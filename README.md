@@ -56,7 +56,32 @@ pip install -r requirements.txt
 
 ## Quick start
 
-1. **In FIJI:** open your image stack, verify pixel size, generate a max-intensity projection, run ComDet, and save the results table as CSV.
+1. **Spot detection in FIJI**
+
+**Install ComDet plugin:**
+- In FIJI: Help → Update... → Manage update sites
+- Check "ComDet" → Close → Apply changes → Restart FIJI
+
+**Run spot detection:**
+1. Open your TIFF stack: File → Open → `your_stack.tif`
+2. Verify pixel size: Image → Properties → check "Pixel width/height"
+3. Generate max projection: Image → Stacks → Z Project → Max Intensity
+4. Run ComDet: Plugins → ComDet v.0.5.5 → Detect Particles
+5. Set parameters:
+   - **Approximate diameter:** 3-4 pixels (adjust for your PSF)
+   - **Intensity threshold:** Start with 3, tune visually
+   - Check "Add to ROI Manager -- All detections" to verify detections
+   - ROI shape = ovals
+   - Summary table = reset
+   - Un-check "include large particles"
+   - Un-check "segment larger particles"
+     
+6. Save the result table and all ROIs in the manager
+     - File → Save As → `comdet_results.csv`
+     - ROI manager =  Select all → Save → Image_name_ROI.zip 
+
+**ComDet output requirements:** The CSV must contain columns `Index`, `X_(px)`, `Y_(px)`, `xMin`, `yMin`, `xMax`, `yMax`, `NArea`.
+
 
 2. **Run each script in order.** Each has a `USER SETTINGS` block at the top for file paths and parameters:
 
@@ -108,6 +133,16 @@ python analyze_stoichiometry.py
 | `s` | Save current view as PNG |
 | `j` | Jump to specific spot ID |
 | `q` | Quit (progress auto-saved) |
+
+## Test Dataset
+
+Download the example dataset:  
+https://doi.org/10.5281/zenodo.20324540
+
+Includes:
+- Raw TIFF stack
+- Maximum Projection image of the raw image
+- ComDet CSV from FIJI plugin
 
 ## Troubleshooting
  
