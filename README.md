@@ -1,4 +1,4 @@
-# smpb-pipeline
+# Single-Molecule-Photobleaching --- smpb-pipeline
 
 End-to-end Python pipeline for determining membrane protein stoichiometry by single-molecule photobleaching (smPB).
 
